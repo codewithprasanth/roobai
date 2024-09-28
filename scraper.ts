@@ -48,16 +48,19 @@ const scrap = async (whatsappClient: Client) => {
         });
       });
       console.log("evaluation done");
+      console.log('got response', res);
       res
         .filter((res) => res.discountPercent >= 80||res.title.toLowerCase().includes('mouse')||res.title.toLowerCase().includes('laptop')||res.title.toLowerCase().includes('monitor'))
         .forEach((product) => {
           if (!prodArray.includes(product.title)) {
             prodArray.push(product.title);
             console.log(product);
+            console.log('sending whatsapp message')!
             whatsappClient.sendMessage(
               "917200632341@c.us",
               `TITLE: ${product.title}\nOFFER PRICE: ${product.offerPrice}\nMRP PRICE: ${product.currentPrice}\nDISCOUNT: ${product.discountPercent}%\nURL:${product.url}\nIMAGE URL:${product.imageUrl}`
             );
+            console.log('message sent')!
           }
         });
       await wait(30000);

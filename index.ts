@@ -6,6 +6,7 @@ import express from "express";
 (async()=>{
     const whatsappClient = await initWhatsapp();
     whatsappClient.on('ready', () => {
+        console.log('client connected')!
         scrap(whatsappClient);
     });
 })();
@@ -18,9 +19,7 @@ app.get('/status',(req,res,next)=>{
 app.listen(8080,()=>console.log('server is listening'));
 
 // import qrcode from "qrcode-terminal"
-
 // const qr = "";
-
 // qrcode.generate(qr, {small: true});
 
 
