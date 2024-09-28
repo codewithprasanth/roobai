@@ -5,9 +5,13 @@ import express from "express";
 
 (async()=>{
     const whatsappClient = await initWhatsapp();
-    whatsappClient.on('ready', () => {
-        console.log('client connected')!
-        scrap(whatsappClient);
+    whatsappClient.on('ready', async() => {
+        console.log('client connected');
+        await whatsappClient.sendMessage(
+            "917200632341@c.us",
+            'Scraping started'
+          );
+        await scrap(whatsappClient);
     });
 })();
 
