@@ -8,6 +8,10 @@ const wait = (msec: number) =>
   });
 
 const scrap = async (whatsappClient: Client) => {
+    whatsappClient.sendMessage(
+        "917200632341@c.us",
+        `Scraping started`
+      );
   const prodArray: string[] = [];
   const browser = await puppeteer.launch();
   console.log("browser launched");
@@ -18,6 +22,8 @@ const scrap = async (whatsappClient: Client) => {
     console.log("evaluation started");
     try {
       const res = await page.evaluate(() => {
+        console.log('sample query');
+        console.log(document.getElementsByClassName("single-products"));
         return Array.from(
           document.getElementsByClassName("single-products")
         ).map((prod) => {
